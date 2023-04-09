@@ -1,6 +1,13 @@
-上传解压不说了
+具体搭建方法看https://www.bilibili.com/video/BV1Dk4y1Y7ob/
+视频内忘记说伪静态设置
 
-修改sc.php文件里面 73行 74行的域名为搭建域名
-搭建完成后 访问域名/sc.php
-域名需要证书
-伪静态设置为 thinkphp
+下面是伪静态规则
+
+location ~* (runtime|application)/{
+	return 403;
+}
+location / {
+	if (!-e $request_filename){
+		rewrite  ^(.*)$  /index.php?s=$1  last;   break;
+	}
+}
